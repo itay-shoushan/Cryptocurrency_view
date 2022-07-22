@@ -1,0 +1,64 @@
+body, html {
+    height: 100%;
+  }
+  
+  .parallax {
+    /* The image used */
+    background-image: url('photos/bitcoin-gaa1622aaa_1920.jpg');
+  
+    /* Full height */
+    /* height: 100%;  */
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: repeat-y;
+    background-size: cover;
+  }
+  
+  #homeContent, #liveReportsContent, #aboutContent{
+    padding-top: 10rem;
+    min-height: 50em;
+  }
+
+
+  .cardModalDiv{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 1em;
+    padding: 0.5em;
+  }
+
+  #aboutContent{
+    color: white;
+    text-align: center;
+  }
+
+  #Itayimg{
+    text-align: center;
+    width: 300px;
+  }
+  /* .parallax{
+    margin: 3em;
+    padding-top: 3em; */
+    /* color: white; */
+    
+
+  /* } */
+
+  /* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+  /* @media only screen and (max-device-width: 1366px) {
+    .parallax {
+      background-attachment: scroll;
+    }
+  } */
+
+
+  #homeSpinner{
+    width: 5em;
+    height: 5em;
+    position: absolute;
+    margin: auto;
+    left: 45%;
+    top: 50%;
+  }
