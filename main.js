@@ -3,7 +3,7 @@
 
 $(function () { //Document ready
 
-
+    let lastIdtoActivate = "";
     function resetSearch() {
         $(".alert").hide();
         $(".card").show();
@@ -197,12 +197,14 @@ $(function () { //Document ready
             const numberOfChecked = $('#homeContent input:checkbox:checked').length;
             if (typeof ($(this).attr("checked")) == "undefined" && numberOfChecked > 5) {
                 e.preventDefault();
-                popupModal($(this).attr("id"));
+                //$(this).prop('checked', false);
+                lastIdtoActivate = $(this).attr("id");
+                popupModal();
             }
         });
     }
 
-    function popupModal(lastIdtoActivate) {
+    function popupModal() {
         let cards = ""
         $("#myModal").modal('show');
         let activatedCards = $("#homeContent div.myCard input.custom-control-input:checked")
@@ -223,30 +225,28 @@ $(function () { //Document ready
             `
             cards += card
         }
-
         $(".modal-body").html(cards);
 
-        $('#myModal').on('click', "div.myCard input.custom-control-input", function (e) {
-            $('#myModal div.myCard input.custom-control-input').prop('checked', true);
-            $(this).prop('checked', false);
-        });
-
-
-        $('#myModal').on('click', ".saveBtnModal", function (e) {
-
-            const disableID = $("#myModal input:not(:checked)").attr("id");
-            if (typeof (disableID) != "undefined") {
-                $("#" + disableID.substring(5)).prop('checked', false);
-                $("#" + lastIdtoActivate).prop('checked', true);
-            }
-            else {
-                console.log("modal saved without any button unchecked");
-            }
-
-            $('#myModal').modal("hide");
-        });
-
     }
+
+    $('#content').on('click', "#myModal div.myCard input.custom-control-input", function (e) {
+        $('#myModal div.myCard input.custom-control-input').prop('checked', true);
+        $(this).prop('checked', false);
+    });
+
+    $('#content').on('click', "#myModal .saveBtnModal", function (e) {
+
+        const disableID = $("#myModal input:not(:checked)").attr("id");
+        if (typeof (disableID) != "undefined") {
+            $("#" + disableID.substring(5)).prop('checked', false);
+            $("#" + lastIdtoActivate).prop('checked', true);
+        }
+        else {
+            console.log("modal saved without any button unchecked");
+        }
+
+        $('#myModal').modal("hide");
+    });
 
     ////////////////////////////////////////
     //Functions for live reports >>
